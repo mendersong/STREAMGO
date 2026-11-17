@@ -25,7 +25,8 @@ jobs:
           gradle-version: '8.7'
 
       - name: Compilar APK de Debug
-        run: ./gradlew :app:assembleDebug
+        run: ./gradlew assembleDebug
+        working-directory: app
 
       - name: Disponibilizar APK para Download
         uses: actions/upload-artifact@v4
