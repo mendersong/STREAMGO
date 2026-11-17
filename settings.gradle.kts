@@ -13,4 +13,4 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "STREAMGO"
-include(":aplicativo")
+include(":app")
