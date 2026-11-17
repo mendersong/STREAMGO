@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">StreamGo</string>
+    <string name="iniciar_transmissao">INICIAR TRANSMISSÃO</string>
+    <string name="parar_transmissao">PARAR TRANSMISSÃO</string>
+    <string name="preview">Pré-visualização</string>
+    <string name="erro_usb">Placa de captura desconectada. Tentando reconectar…</string>
+    <string name="aviso_tiktok">TikTok não possui API oficial de chat. Recurso indisponível.</string>
+    <string name="notificacao_titulo">StreamGo - Ao Vivo</string>
+    <string name="notificacao_texto">Transmitindo em 1080p60 • Toque para abrir</string>
+</resources>
