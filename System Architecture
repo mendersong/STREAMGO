@@ -1,0 +1,16 @@
+flowchart LR
+    subgraph Phone["Android Device — Foreground Service"]
+        UVC1[HDMI Capture UVC] --> GL[OpenGL ES Composer]
+        UVC2[USB Webcam] --> GL
+        CAM[CameraX] --> GL
+        W[Overlay/Widget Engine B] --> GL
+        GL --> ENC[MediaCodec H.264/HEVC + AAC]
+        AUD[Audio Mixer: HDMI/USB/Webcam] --> ENC
+        ENC --> MODE{Mode}
+        MODE -->|Restream default| RS[Restream Server<br/>MediaMTX]
+        MODE -->|Direct| P1[Platforms RTMP/RTMPS]
+        RS --> P1
+        CHAT[Unified Chat] --> UI[Compose UI PT-BR]
+        MON[Monitoring Engine] --> UI
+    end
+    RS <-.WebSocket status/control.-> Phone
