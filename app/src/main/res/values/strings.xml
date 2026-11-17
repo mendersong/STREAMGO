@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">StreamGo</string>
+    <string name="iniciar_transmissao">INICIAR TRANSMISSÃO</string>
+    <string name="parar_transmissao">PARAR TRANSMISSÃO</string>
+    <string name="preview">Pré-visualização</string>
+    <string name="fontes_video">Fontes de Vídeo</string>
+    <string name="hdmi_principal">HDMI Principal (Placa de Captura)</string>
+    <string name="webcam_secundaria">Webcam Secundária</string>
+    <string name="mixer_audio">Mixer de Áudio</string>
+    <string name="audio_hdmi">Áudio HDMI</string>
+    <string name="microfone_usb">Microfone USB</string>
+    <string name="chat_unificado">Chat Unificado</string>
+    <string name="monitoramento">Monitoramento Técnico</string>
+    <string name="fps">FPS: %1$d</string>
+    <string name="bitrate">Taxa de bits: %1$d kbps</string>
+    <string name="temperatura">Temperatura: %1$.1f°C</string>
+    <string name="frames_perdidos">Frames perdidos: %1$d</string>
+    <string name="status_conectado">Conectado</string>
+    <string name="status_reconectando">Reconectando…</string>
+    <string name="erro_usb_desconectado">Placa de captura desconectada. Tentando reconectar…</string>
+    <string name="aviso_tiktok">TikTok não possui API oficial de chat. Recurso indisponível.</string>
+    <string name="modo_performance_ativo">Modo Performance ativado para priorizar a transmissão</string>
+</resources>
