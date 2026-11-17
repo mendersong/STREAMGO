@@ -4,9 +4,11 @@ plugins {
     id("kotlin-kapt")
     id("dagger.hilt.android.plugin")
 }
+
 android {
     namespace = "com.streamgo.app"
     compileSdk = 34
+
     defaultConfig {
         applicationId = "com.streamgo.app"
         minSdk = 26
@@ -14,14 +16,25 @@ android {
         versionCode = 1
         versionName = "1.0.0"
     }
-    buildFeatures { compose = true }
-    composeOptions { kotlinCompilerExtensionVersion = "1.5.8" }
+
+    buildFeatures {
+        compose = true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.8"
+    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
-    kotlinOptions { jvmTarget = "17" }
+
+    kotlinOptions {
+        jvmTarget = "17"
+    }
 }
+
 dependencies {
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.compose.ui:ui:1.6.1")
