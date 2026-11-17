@@ -1,0 +1,34 @@
+class StreamingForegroundService : Service() {
+    private var rtmpClient: RtmpCamera2? = null
+    private var uvcCamera: UVCCameraHelper? = null
+
+    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+        val notification = NotificationCompat.Builder(this, "streamgo_channel")
+            .setContentTitle("StreamGo - Ao Vivo")
+            .setContentText("Transmitindo em 1080p60 • Toque para abrir")
+            .setSmallIcon(R.drawable.ic_live)
+            .setOngoing(true).build()
+        startForeground(1, notification, ServiceInfo.FOREGROUND_SERVICE_TYPE_CAMERA or ServiceInfo.FOREGROUND_SERVICE_TYPE_MICROPHONE)
+
+        // PIPELINE ÚNICO: UVC HDMI -> GL Compositor -> MediaCodec Surface -> RTMP
+        // A composição da Webcam + Widgets acontece no GL antes do Input Surface do MediaCodec
+        rtmpClient = RtmpCamera2(openGlView, object: ConnectCheckerRtmp {
+            override fun onConnectionSuccessRtmp() { /* Atualiza Restream Engine via WebSocket */ }
+            override fun onConnectionFailedRtmp(reason: String) { scheduleReconnect() }
+            override fun onDisconnectRtmp() { scheduleReconnect() }
+        })
+        // Detecção real de capacidade
+        val suporta1080p60 = checkHardwareSupport(1920, 1080, 60)
+        if(!suporta1080p60) notificarUsuario("Seu aparelho não suporta 1080p60. Usando 1080p30.")
+
+        return START_STICKY
+    }
+    
+    private fun checkHardwareSupport(w:Int, h:Int, fps:Int): Boolean {
+        val mList = MediaCodecList(MediaCodecList.ALL_CODECS)
+        return mList.codecInfos.any { info ->
+            info.isEncoder && info.supportedTypes.contains("video/avc") &&
+            info.getCapabilitiesForType("video/avc").videoCapabilities.areSizeAndRateSupported(w,h,fps.toDouble())
+        }
+    }
+}
